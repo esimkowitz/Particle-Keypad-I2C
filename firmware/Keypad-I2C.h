@@ -63,11 +63,12 @@ typedef struct {
 #define MAPSIZE 10		// MAPSIZE is the number of rows (times 16 columns)
 #define makeKeymap(x) ((char*)x)
 
-Adafruit_MCP23008 mcp;
+
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
-	mcp.begin();
+	Adafruit_MCP23008 mcp;
+	virtual void begin() { mcp.begin(); }
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) { mcp.pinMode(pinNum, mode); }
@@ -113,7 +114,7 @@ private:
 
 /*
 || @changelog
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h
+|| | 0.1 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h, added integration of I2C
 || | 0.1 2016-5-19 - Evan Simkowitz	: Added declaration for Adafruit_MCP23008.h
 || #
 */
