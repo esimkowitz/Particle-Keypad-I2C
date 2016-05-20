@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad-I2C.h
-|| @version 0.1.0
+|| @version 0.1.2
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
