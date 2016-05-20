@@ -1,7 +1,7 @@
 /* @file MultiKey.ino
-|| @version 1.0
-|| @author Mark Stanley
-|| @contact mstanley@technologist.com
+|| @version 1.1
+|| @author Mark Stanley, Evan Simkowitz
+|| @contact mstanley@technologist.com, esimkowitz@wustl.edu
 ||
 || @description
 || | The latest version, 3.0, of the keypad library supports up to 10
@@ -21,8 +21,8 @@ char keys[ROWS][COLS] = {
 {'7','8','9'},
 {'*','0','#'}
 };
-byte rowPins[ROWS] = {D3, D2, D1, D0}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {D6, D5, D4}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {0, 1, 2, 3}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {4, 5, 6}; //connect to the column pinouts of the keypad
 
 Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
