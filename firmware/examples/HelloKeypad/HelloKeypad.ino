@@ -1,10 +1,10 @@
-/* @file HelloKeypad.pde
-|| @version 1.0
-|| @author Alexander Brevig
+/* @file HelloKeypad.ino
+|| @version 1.1
+|| @author Alexander Brevig, Evan Simkowitz
 || @contact alexanderbrevig@gmail.com
 ||
 || @description
-|| | Demonstrates the simplest use of the matrix Keypad library.
+|| | Demonstrates the simplest use of the matrix Keypad library over I2C on the Photon, Electron, P1, or Core.
 || #
 */
 #include "Keypad/Keypad.h"
