@@ -120,7 +120,10 @@ private:
 
 /*
 || @changelog
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h, added integration of I2C
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Added declaration for Adafruit_MCP23008.h
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository. 
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle. 
+|| | 0.1.1 2016-5-20 = Evan Simkowitz	: worked out some issues with reliability 
+|| | 0.1.0 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h, added integration of I2C
+|| | 0.1.0 2016-5-19 - Evan Simkowitz	: Added declaration for Adafruit_MCP23008.h
 || #
 */
