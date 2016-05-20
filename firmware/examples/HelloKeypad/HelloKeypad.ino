@@ -1,7 +1,7 @@
 /* @file HelloKeypad.ino
 || @version 1.1
 || @author Alexander Brevig, Evan Simkowitz
-|| @contact alexanderbrevig@gmail.com
+|| @contact alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
 || @description
 || | Demonstrates the simplest use of the matrix Keypad library over I2C on the Photon, Electron, P1, or Core.
