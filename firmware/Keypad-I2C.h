@@ -68,10 +68,21 @@ typedef struct {
 class Keypad : public Key {
 public:
 	Adafruit_MCP23008 mcp;
-	virtual void begin() { mcp.begin(); }
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
-	virtual void pin_mode(byte pinNum, PinMode mode) { mcp.pinMode(pinNum, mode); }
+	virtual void pin_mode(byte pinNum, PinMode mode) { 
+		if (mode == INPUT_PULLUP) {
+			for (int i = 0; i < sizeKpd.rows; i++) {
+				mcp.pullUp(rowPins[i]);
+			}
+			for (int i = 0; i < sizeKpd.columns; i++) {
+				mcp.pullUp(columnPins[i]);
+			}
+			mcp.pinMode(pinNum, INPUT);
+			return;
+		}
+		mcp.pinMode(pinNum, mode);
+	}
 	virtual void pin_write(byte pinNum, boolean level) { mcp.digitalWrite(pinNum, level); }
 	virtual int  pin_read(byte pinNum) { return mcp.digitalRead(pinNum); }
 
