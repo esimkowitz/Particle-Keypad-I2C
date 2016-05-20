@@ -113,6 +113,7 @@ private:
 
 /*
 || @changelog
+|| | 0.1 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h
 || | 0.1 2016-5-19 - Evan Simkowitz	: Added declaration for Adafruit_MCP23008.h
 || #
 */
