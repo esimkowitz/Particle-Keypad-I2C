@@ -48,6 +48,7 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 
 	startTime = 0;
 	single_key = false;
+	mcp.begin();
 }
 
 // Let the user define a keymap - assume the same row/column count as defined in constructor
