@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad-I2C.cpp
-|| @version 0.1.0
+|| @version 0.1.2
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
@@ -269,8 +269,11 @@ void Keypad::transitionTo(byte idx, KeyState nextState) {
 
 /*
 || @changelog
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Accounted for name change of Keypad-I2C.h from Keypad.h
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.cpp to Keypad-I2C.cpp
-|| | 0.1 2016-5-19 - Evan Simkowitz	: Added the Adafruit_MCP23008.h
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle.
+|| | 0.1.1 2016-5-20 = Evan Simkowitz	: worked out some issues with reliability
+|| | 0.1.0 2016-5-19 - Evan Simkowitz	: Accounted for name change of Keypad-I2C.h from Keypad.h
+|| | 0.1.0 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.cpp to Keypad-I2C.cpp
+|| | 0.1.0 2016-5-19 - Evan Simkowitz	: Added the Adafruit_MCP23008.h, forked from Keypad-spark
 || #
 */
