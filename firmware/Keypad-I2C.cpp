@@ -85,7 +85,7 @@ bool Keypad::getKeys() {
 void Keypad::scanKeys() {
 	// Re-intialize the row pins. Allows sharing these pins with other hardware.
 	for (byte r=0; r<sizeKpd.rows; r++) {
-		pin_mode(rowPins[r],INPUT);
+		pin_mode(rowPins[r],INPUT_PULLUP);
 	}
 
 	// bitMap stores ALL the keys that are being pressed.
