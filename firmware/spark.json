@@ -1,7 +1,0 @@
-{
-  "name": "Wtv020sd16p",
-  "author": "Diego J. Arevalo, modified by Ryszard Malinowski, adapted for Spark Core by Sandro Lange",
-  "license": "Public Domain",
-  "version": "1.2.0",
-  "description": "A Spark Core port of the Wtv020sd16p (AD4/MP3 SD-card player) library by Diego J. Arevalo"
-}
