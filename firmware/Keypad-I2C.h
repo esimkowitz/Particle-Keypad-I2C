@@ -72,13 +72,8 @@ public:
 
 	virtual void pin_mode(byte pinNum, PinMode mode) { 
 		if (mode == INPUT_PULLUP) {
-			for (int i = 0; i < sizeKpd.rows; i++) {
-				mcp.pullUp((int)rowPins[i]);
-			}
-			for (int i = 0; i < sizeKpd.columns; i++) {
-				mcp.pullUp((int)columnPins[i]);
-			}
 			mcp.pinMode(pinNum, INPUT);
+			mcp.pullUp(pinNum, HIGH);
 			return;
 		}
 		mcp.pinMode(pinNum, mode);
