@@ -63,16 +63,16 @@ typedef struct {
 #define MAPSIZE 10		// MAPSIZE is the number of rows (times 16 columns)
 #define makeKeymap(x) ((char*)x)
 
-
+Adafruit_MCP23008 mcp;
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
-
+	mcp.begin();
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
-	virtual void pin_mode(byte pinNum, PinMode mode) { pinMode(pinNum, mode); }
-	virtual void pin_write(byte pinNum, boolean level) { digitalWrite(pinNum, level); }
-	virtual int  pin_read(byte pinNum) { return digitalRead(pinNum); }
+	virtual void pin_mode(byte pinNum, PinMode mode) { mcp.pinMode(pinNum, mode); }
+	virtual void pin_write(byte pinNum, boolean level) { mcp.digitalWrite(pinNum, level); }
+	virtual int  pin_read(byte pinNum) { return mcp.digitalRead(pinNum); }
 
 	uint bitMap[MAPSIZE];	// 10 row x 16 column array of bits. Except Due which has 32 columns.
 	Key key[LIST_MAX];
@@ -95,8 +95,8 @@ public:
 private:
 	unsigned long startTime;
 	char *keymap;
-    byte *rowPins;
-    byte *columnPins;
+	byte *rowPins;
+    	byte *columnPins;
 	KeypadSize sizeKpd;
 	uint debounceTime;
 	uint holdTime;
