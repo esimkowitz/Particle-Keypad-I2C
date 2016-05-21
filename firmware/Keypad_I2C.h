@@ -1,15 +1,15 @@
 /*
 ||
-|| @file Keypad-I2C.h
-|| @version 0.1.2
+|| @file Keypad_I2C.h
+|| @version 0.1.4
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
 || @description
 || | This library provides a simple interface for using matrix
-|| | keypads over an I2C interface. It supports multiple 
-|| | keypresses while maintaining backwards compatibility with 
-|| | the old single key library. It also supports user selectable 
+|| | keypads over an I2C interface. It supports multiple
+|| | keypresses while maintaining backwards compatibility with
+|| | the old single key library. It also supports user selectable
 || | pins and definable keymaps.
 || #
 ||
@@ -31,8 +31,8 @@
 ||
 */
 
-#ifndef KEYPAD_H
-#define KEYPAD_H
+#ifndef KEYPAD_I2C_H
+#define KEYPAD_I2C_H
 
 #include "Key.h"
 
@@ -70,7 +70,7 @@ public:
 	Adafruit_MCP23008 mcp;
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
-	virtual void pin_mode(byte pinNum, PinMode mode) { 
+	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
 			mcp.pinMode(pinNum, INPUT);
 			mcp.pullUp(pinNum, HIGH);
@@ -120,9 +120,9 @@ private:
 
 /*
 || @changelog
-|| | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository. 
-|| | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle. 
-|| | 0.1.1 2016-5-20 = Evan Simkowitz	: worked out some issues with reliability 
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.
+|| | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle.
+|| | 0.1.1 2016-5-20 = Evan Simkowitz	: worked out some issues with reliability
 || | 0.1.0 2016-5-19 - Evan Simkowitz	: Changed name from Keypad.h to Keypad-I2C.h, added integration of I2C
 || | 0.1.0 2016-5-19 - Evan Simkowitz	: Added declaration for Adafruit_MCP23008.h
 || #

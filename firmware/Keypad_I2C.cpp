@@ -1,15 +1,15 @@
 /*
 ||
-|| @file Keypad-I2C.cpp
-|| @version 0.1.2
+|| @file Keypad_I2C.cpp
+|| @version 0.1.4
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
 || @description
 || | This library provides a simple interface for using matrix
-|| | keypads over an I2C interface. It supports multiple 
-|| | keypresses while maintaining backwards compatibility with 
-|| | the old single key library. It also supports user selectable 
+|| | keypads over an I2C interface. It supports multiple
+|| | keypresses while maintaining backwards compatibility with
+|| | the old single key library. It also supports user selectable
 || | pins and definable keymaps.
 || #
 ||
@@ -31,7 +31,7 @@
 ||
 */
 
-#include "Keypad-I2C.h"
+#include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
 Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
@@ -62,7 +62,7 @@ char Keypad::getKey() {
 
 	if (getKeys() && key[0].stateChanged && (key[0].kstate==PRESSED))
 		return key[0].kchar;
-	
+
 	single_key = false;
 
 	return NO_KEY;
