@@ -1,3 +1,13 @@
+/* @file HelloKeypad.ino
+|| @version 1.1
+|| @author Alexander Brevig, adapted for Particle IDE by Evan Simkowitz
+|| @contact alexanderbrevig@gmail.com, esimkowitz@wustl.edu
+||
+|| @description
+|| | Demonstrates the simplest use of the matrix Keypad library.
+|| #
+*/
+
 #include "Keypad_I2C/Keypad_I2C.h"
 
 const byte ROWS = 4; //four rows
