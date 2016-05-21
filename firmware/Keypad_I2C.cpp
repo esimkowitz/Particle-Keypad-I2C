@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad_I2C.cpp
-|| @version 0.1.4
+|| @version 0.1.6
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
