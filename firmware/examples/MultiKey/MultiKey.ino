@@ -11,7 +11,7 @@
 || #
 */
 
-#include "Keypad/Keypad.h"
+#include "Keypad-I2C.h"
 
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns

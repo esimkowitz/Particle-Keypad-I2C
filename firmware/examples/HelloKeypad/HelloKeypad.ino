@@ -7,7 +7,7 @@
 || | Demonstrates the simplest use of the matrix Keypad library over I2C on the Photon, Electron, P1, or Core.
 || #
 */
-#include "Keypad/Keypad.h"
+#include "Keypad-I2C.h"
 
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
@@ -25,10 +25,10 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 void setup(){
   Serial.begin(9600);
 }
-  
+
 void loop(){
   char key = keypad.getKey();
-  
+
   if (key){
     Serial.println(key);
   }
