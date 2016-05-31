@@ -9,7 +9,7 @@
 */
 
 #include "Keypad_I2C/Keypad_I2C.h"
-#define Adafruit_MCP23008
+#define Adafruit_MCP23008 NULL
 
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
