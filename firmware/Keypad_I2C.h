@@ -38,13 +38,11 @@
 
 #include "application.h"
 
-#if defined(Adafruit_MCP23008)
+#ifdef Adafruit_MCP23008
 #include "Adafruit_MCP23008.h"
-#else
-#if defined(Adafruit_MCP23017)
+#elif Adafruit_MCP23017
 #include "Adafruit_MCP23017.h"
-#endif //Adafruit_MCP23017
-#endif //Adafruit_MCP23008
+#endif
 
 #define OPEN LOW
 #define CLOSED HIGH
@@ -73,12 +71,10 @@ typedef struct {
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
-	#if defined(Adafruit_MCP23008)
+	#ifdef Adafruit_MCP23008
 	Adafruit_MCP23008 mcp;
-	#else
-	#if defined(Adafruit_MCP23017)
+	#elif Adafruit_MCP23017
 	Adafruit_MCP23017 mcp;
-	#endif
 	#endif
 
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
