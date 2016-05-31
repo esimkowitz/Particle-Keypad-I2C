@@ -38,7 +38,8 @@
 
 #include "application.h"
 
-#include "Adafruit_MCP23008.h"
+#include "utilities/Adafruit_MCP23008.h"
+// #include "utilities/Adafruit_MCP23017.h"
 
 #define OPEN LOW
 #define CLOSED HIGH
