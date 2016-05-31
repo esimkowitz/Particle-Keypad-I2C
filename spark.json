@@ -2,6 +2,6 @@
   "name": "Keypad_I2C",
   "author": "Mark Stanley (mstanley@technologist.com), Alexander Brevig (alexanderbrevig@gmail.com), adapted for Spark Core by Sandro Lange, adapted for I2C by Evan Simkowitz",
   "license": "GPLv3",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Particle IDE library for using a keyboard with the MCP23008 I2C I/O expander"
 }
