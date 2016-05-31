@@ -14,13 +14,13 @@
  ****************************************************/
 
 #if defined (SPARK)
-#include "utilities/Adafruit_MCP23017.h"
+#include "Adafruit_MCP23017.h"
 #else
 #include <Wire.h>
 #ifdef __AVR__
 #include <avr/pgmspace.h>
 #endif
-#include "utilities/Adafruit_MCP23017.h"
+#include "Adafruit_MCP23017.h"
 
 #if ARDUINO >= 100
 #include "Arduino.h"

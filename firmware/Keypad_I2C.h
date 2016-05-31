@@ -38,8 +38,13 @@
 
 #include "application.h"
 
-#include "utilities/Adafruit_MCP23008.h"
-// #include "utilities/Adafruit_MCP23017.h"
+#ifdef Adafruit_MCP23008
+#include "Adafruit_MCP23008.h"
+#else
+#ifdef Adafruit_MCP23017
+#include "Adafruit_MCP23017.h"
+#endif //Adafruit_MCP23017
+#endif //Adafruit_MCP23008
 
 #define OPEN LOW
 #define CLOSED HIGH
@@ -68,19 +73,35 @@ typedef struct {
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
+	#ifdef Adafruit_MCP23008
 	Adafruit_MCP23008 mcp;
+	#endif
+	#ifdef Adafruit_MCP23017
+	Adafruit_MCP23017 mcp;
+	#endif
+
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
+			#if defined(Adafruit_MCP23017) || defined(Adafruit_MCP23008)
 			mcp.pinMode(pinNum, INPUT);
 			mcp.pullUp(pinNum, HIGH);
+			#endif
 			return;
 		}
 		mcp.pinMode(pinNum, mode);
 	}
-	virtual void pin_write(byte pinNum, boolean level) { mcp.digitalWrite(pinNum, level); }
-	virtual int  pin_read(byte pinNum) { return mcp.digitalRead(pinNum); }
+	virtual void pin_write(byte pinNum, boolean level) { 
+		#if defined(Adafruit_MCP23008) || defined(Adafruit_MCP23017)
+		mcp.digitalWrite(pinNum, level); 
+		#endif
+	}
+	virtual int  pin_read(byte pinNum) { 
+		#if defined(Adafruit_MCP23008) || defined(Adafruit_MCP23017)
+		return mcp.digitalRead(pinNum); 
+		#endif
+	}
 
 	uint bitMap[MAPSIZE];	// 10 row x 16 column array of bits. Except Due which has 32 columns.
 	Key key[LIST_MAX];

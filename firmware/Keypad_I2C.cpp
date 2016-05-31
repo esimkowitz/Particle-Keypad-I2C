@@ -48,7 +48,9 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 
 	startTime = 0;
 	single_key = false;
+	#if defined(Adafruit_MCP23008) || defined(Adafruit_MCP23017)
 	mcp.begin();
+	#endif
 }
 
 // Let the user define a keymap - assume the same row/column count as defined in constructor
