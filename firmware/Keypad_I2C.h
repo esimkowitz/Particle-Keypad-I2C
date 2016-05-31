@@ -75,9 +75,10 @@ class Keypad : public Key {
 public:
 	#ifdef Adafruit_MCP23008
 	Adafruit_MCP23008 mcp;
-	#endif
+	#else
 	#ifdef Adafruit_MCP23017
 	Adafruit_MCP23017 mcp;
+	#endif
 	#endif
 
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
