@@ -34,11 +34,23 @@
 #include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
-Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, I2CType i2c) {
 	rowPins = row;
 	columnPins = col;
 	sizeKpd.rows = numRows;
 	sizeKpd.columns = numCols;
+	i2ctype = i2c;
+
+	switch(i2ctype) {
+		case Adafruit_MCP23008:
+			#define Adafruit_MCP23008
+			break;
+		case Adafruit_MCP23017:
+			#define Adafruit_MCP23017;
+			break;
+		default:
+			break;
+	}
 
 	begin(userKeymap);
 

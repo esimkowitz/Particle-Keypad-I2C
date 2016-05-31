@@ -38,11 +38,8 @@
 
 #include "application.h"
 
-#ifdef Adafruit_MCP23008
 #include "Adafruit_MCP23008.h"
-#elif Adafruit_MCP23017
 #include "Adafruit_MCP23017.h"
-#endif
 
 #define OPEN LOW
 #define CLOSED HIGH
@@ -67,10 +64,14 @@ typedef struct {
 #define MAPSIZE 10		// MAPSIZE is the number of rows (times 16 columns)
 #define makeKeymap(x) ((char*)x)
 
+enum I2CType {Adafruit_MCP23017, Adafruit_MCP23008};
 
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
+
+	I2CType i2ctype;
+
 	#ifdef Adafruit_MCP23008
 	Adafruit_MCP23008 mcp;
 	#elif Adafruit_MCP23017
@@ -81,23 +82,17 @@ public:
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
-			#if defined(Adafruit_MCP23017) || defined(Adafruit_MCP23008)
 			mcp.pinMode(pinNum, INPUT);
 			mcp.pullUp(pinNum, HIGH);
-			#endif
 			return;
 		}
 		mcp.pinMode(pinNum, mode);
 	}
 	virtual void pin_write(byte pinNum, boolean level) { 
-		#if defined(Adafruit_MCP23008) || defined(Adafruit_MCP23017)
 		mcp.digitalWrite(pinNum, level); 
-		#endif
 	}
 	virtual int  pin_read(byte pinNum) { 
-		#if defined(Adafruit_MCP23008) || defined(Adafruit_MCP23017)
 		return mcp.digitalRead(pinNum); 
-		#endif
 	}
 
 	uint bitMap[MAPSIZE];	// 10 row x 16 column array of bits. Except Due which has 32 columns.
