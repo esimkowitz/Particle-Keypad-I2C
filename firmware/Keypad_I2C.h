@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad_I2C.h
-|| @version 0.1.6
+|| @version 0.1.7
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
@@ -121,6 +121,7 @@ private:
 
 /*
 || @changelog
+|| | 0.1.7 2016-5-31 - Evan Simkowitz	: I am preparing to add MCP23017 compatibility and am setting the groundwork with some reorganization.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle.
 || | 0.1.1 2016-5-20 = Evan Simkowitz	: worked out some issues with reliability
