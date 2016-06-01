@@ -75,7 +75,7 @@ public:
 	Adafruit_MCP23008 mcp8;
 	Adafruit_MCP23017 mcp17;
 
-	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
+	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char* i2cstr);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
