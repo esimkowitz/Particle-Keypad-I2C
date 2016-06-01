@@ -64,22 +64,26 @@ typedef struct {
 #define MAPSIZE 10		// MAPSIZE is the number of rows (times 16 columns)
 #define makeKeymap(x) ((char*)x)
 
-enum I2CType {MCP23017, MCP23008};
+enum I2C {MCP23017, MCP23008};
 
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
 public:
 
-	I2CType i2ctype;
+	I2C I2Ctype;
 	
 	Adafruit_MCP23008 mcp8;
 	Adafruit_MCP23017 mcp17;
 
-	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2cstr);
+	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype);
+
+	// for backwards compatibility, calling the constructor without the i2ctype parameter will
+	// default to the MCP23008 chip.
+	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
-			switch(i2ctype) {
+			switch(I2Ctype) {
 				case MCP23008:
 				{
 					mcp8.pinMode(pinNum, INPUT);
@@ -97,7 +101,7 @@ public:
 			}
 			return;
 		}
-		switch(i2ctype) {
+		switch(I2Ctype) {
 			case MCP23008:
 			{
 				mcp8.pinMode(pinNum, mode);
@@ -113,7 +117,7 @@ public:
 		}
 	}
 	virtual void pin_write(byte pinNum, boolean level) { 
-		switch(i2ctype) {
+		switch(I2Ctype) {
 			case MCP23008:
 			{
 				mcp8.digitalWrite(pinNum, level); 
@@ -129,7 +133,7 @@ public:
 		}
 	}
 	virtual int  pin_read(byte pinNum) {  
-		switch(i2ctype) {
+		switch(I2Ctype) {
 			case MCP23008:
 			{
 				return mcp8.digitalRead(pinNum);
@@ -184,6 +188,9 @@ private:
 
 /*
 || @changelog
+|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future 
+|| |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
+|| |									  the constructor. For backwards-compatibility, including no i2ctype in the constructor defaults to MCP23008.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Trying just importing all the libraries and then deciding which one to use in the code with separate helpers.
 || | 0.1.7 2016-5-31 - Evan Simkowitz	: I am preparing to add MCP23017 compatibility and am setting the groundwork with some reorganization.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.

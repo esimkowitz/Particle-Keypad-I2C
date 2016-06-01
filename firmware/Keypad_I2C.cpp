@@ -34,7 +34,7 @@
 #include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
-Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2cstr) {
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype) {
 	rowPins = row;
 	columnPins = col;
 	sizeKpd.rows = numRows;
@@ -49,14 +49,18 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	startTime = 0;
 	single_key = false;
 
-	if (i2cstr == "Adafruit_MCP23017") {
-		i2ctype = MCP23017;
+	if (i2ctype == "Adafruit_MCP23017") {
+		I2Ctype = MCP23017;
 		mcp17.begin();
 	}
-	else if (i2cstr == "Adafruit_MCP23008") {
-		i2ctype = MCP23008;
+	else if (i2ctype == "Adafruit_MCP23008") {
+		I2Ctype = MCP23008;
 		mcp8.begin();
 	}
+}
+
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
+	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008");
 }
 
 // Let the user define a keymap - assume the same row/column count as defined in constructor
@@ -277,6 +281,9 @@ void Keypad::transitionTo(byte idx, KeyState nextState) {
 
 /*
 || @changelog
+|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future 
+|| |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
+|| |									  the constructor. For backwards-compatibility, including no i2ctype in the constructor defaults to MCP23008.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Trying just importing all the libraries and then deciding which one to use in the code with separate helpers.
 || | 0.1.7 2016-5-31 - Evan Simkowitz	: I am preparing to add MCP23017 compatibility and am setting the groundwork with some reorganization.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.
