@@ -49,21 +49,15 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	startTime = 0;
 	single_key = false;
 
-	switch (i2cstr) {
-		case "Adafruit_MCP23017":
-		{
-			i2ctype = MCP23017;
-			mcp17.begin();
-			break;
-		}
-		case "Adafruit_MCP23008":
-		{
-			i2ctype = MCP23008;
-			mcp8.begin();
-			break;
-		}
-		default:
-			break;
+	if (i2cstr == "Adafruit_MCP23017") {
+		i2ctype = MCP23017;
+		mcp17.begin();
+		break;
+	}
+	else if (i2cstr == "Adafruit_MCP23008") {
+		i2ctype = MCP23008;
+		mcp8.begin();
+		break;
 	}
 }
 
