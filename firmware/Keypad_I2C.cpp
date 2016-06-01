@@ -52,12 +52,10 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	if (i2cstr == "Adafruit_MCP23017") {
 		i2ctype = MCP23017;
 		mcp17.begin();
-		break;
 	}
 	else if (i2cstr == "Adafruit_MCP23008") {
 		i2ctype = MCP23008;
 		mcp8.begin();
-		break;
 	}
 }
 
