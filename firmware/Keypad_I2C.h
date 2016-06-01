@@ -71,28 +71,78 @@ class Keypad : public Key {
 public:
 
 	I2CType i2ctype;
-
-	#ifdef Adafruit_MCP23008
-	Adafruit_MCP23008 mcp;
-	#elif Adafruit_MCP23017
-	Adafruit_MCP23017 mcp;
-	#endif
+	
+	Adafruit_MCP23008 mcp8;
+	Adafruit_MCP23017 mcp17;
 
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
-			mcp.pinMode(pinNum, INPUT);
-			mcp.pullUp(pinNum, HIGH);
+			switch(i2ctype) {
+				case Adafruit_MCP23008:
+				{
+					mcp8.pinMode(pinNum, INPUT);
+					mcp8.pullUp(pinNum, HIGH);
+					break;
+				}
+				case Adafruit_MCP23017:
+				{
+					mcp17.pinMode(pinNum, INPUT);
+					mcp17.pullUp(pinNum, HIGH);
+					break;
+				}
+				default:
+					break;
+			}
 			return;
 		}
-		mcp.pinMode(pinNum, mode);
+		switch(i2ctype) {
+			case Adafruit_MCP23008:
+			{
+				mcp8.pinMode(pinNum, mode);
+				break;
+			}
+			case Adafruit_MCP23017:
+			{
+				mcp17.pinMode(pinNum, mode);
+				break;
+			}
+			default:
+				break;
+		}
 	}
 	virtual void pin_write(byte pinNum, boolean level) { 
-		mcp.digitalWrite(pinNum, level); 
+		switch(i2ctype) {
+			case Adafruit_MCP23008:
+			{
+				mcp8.digitalWrite(pinNum, level); 
+				break;
+			}
+			case Adafruit_MCP23017:
+			{
+				mcp17.digitalWrite(pinNum, level); 
+				break;
+			}
+			default:
+				break;
+		}
 	}
-	virtual int  pin_read(byte pinNum) { 
-		return mcp.digitalRead(pinNum); 
+	virtual int  pin_read(byte pinNum) {  
+		switch(i2ctype) {
+			case Adafruit_MCP23008:
+			{
+				return mcp8.digitalRead(pinNum);
+			}
+			case Adafruit_MCP23017:
+			{
+				return mcp17.digitalRead(pinNum);
+			}
+			default:
+			{
+				return -1;
+			}
+		}
 	}
 
 	uint bitMap[MAPSIZE];	// 10 row x 16 column array of bits. Except Due which has 32 columns.
@@ -134,6 +184,7 @@ private:
 
 /*
 || @changelog
+|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Trying just importing all the libraries and then deciding which one to use in the code with separate helpers.
 || | 0.1.7 2016-5-31 - Evan Simkowitz	: I am preparing to add MCP23017 compatibility and am setting the groundwork with some reorganization.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: 0.1.2 published to Particle's library repository.
 || | 0.1.2 2016-5-20 - Evan Simkowitz	: No changes here, but had to update version because of an issue importing to Particle.

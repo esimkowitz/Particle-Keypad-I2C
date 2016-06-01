@@ -9,10 +9,11 @@
 */
 
 #include "Keypad_I2C/Keypad_I2C.h"
-#define Adafruit_MCP23008 NULL
 
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
+const char* I2CTYPE = "Adafruit_MCP23017";
+
 char keys[ROWS][COLS] = {
   {'1','2','3'},
   {'4','5','6'},
@@ -22,7 +23,7 @@ char keys[ROWS][COLS] = {
 byte rowPins[ROWS] = {0, 1, 2, 3}; //connect to the row pinouts of the keypad
 byte colPins[COLS] = {4, 5, 6}; //connect to the column pinouts of the keypad
 
-Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CTYPE );
 
 void setup() {
     Serial.begin(9600);
