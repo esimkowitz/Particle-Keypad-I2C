@@ -34,7 +34,7 @@
 #include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
-Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, String i2cstr) {
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2cstr) {
 	rowPins = row;
 	columnPins = col;
 	sizeKpd.rows = numRows;
