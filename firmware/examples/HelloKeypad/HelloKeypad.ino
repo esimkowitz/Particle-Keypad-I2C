@@ -12,7 +12,7 @@
 
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
-const char* I2CTYPE = "Adafruit_MCP23017";
+char* I2CTYPE = "Adafruit_MCP23017";
 
 char keys[ROWS][COLS] = {
   {'1','2','3'},
