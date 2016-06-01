@@ -34,7 +34,7 @@
 #include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
-Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2c) {
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, String i2cstr) {
 	rowPins = row;
 	columnPins = col;
 	sizeKpd.rows = numRows;
@@ -48,8 +48,6 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 
 	startTime = 0;
 	single_key = false;
-
-	String i2cstr.String(i2c);
 
 	switch (i2cstr) {
 		case "Adafruit_MCP23017":
