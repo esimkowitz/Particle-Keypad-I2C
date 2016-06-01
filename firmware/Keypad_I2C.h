@@ -64,7 +64,7 @@ typedef struct {
 #define MAPSIZE 10		// MAPSIZE is the number of rows (times 16 columns)
 #define makeKeymap(x) ((char*)x)
 
-enum I2CType {Adafruit_MCP23017, Adafruit_MCP23008};
+enum I2CType {MCP23017, MCP23008};
 
 //class Keypad : public Key, public HAL_obj {
 class Keypad : public Key {
@@ -80,13 +80,13 @@ public:
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
 			switch(i2ctype) {
-				case Adafruit_MCP23008:
+				case MCP23008:
 				{
 					mcp8.pinMode(pinNum, INPUT);
 					mcp8.pullUp(pinNum, HIGH);
 					break;
 				}
-				case Adafruit_MCP23017:
+				case MCP23017:
 				{
 					mcp17.pinMode(pinNum, INPUT);
 					mcp17.pullUp(pinNum, HIGH);
@@ -98,12 +98,12 @@ public:
 			return;
 		}
 		switch(i2ctype) {
-			case Adafruit_MCP23008:
+			case MCP23008:
 			{
 				mcp8.pinMode(pinNum, mode);
 				break;
 			}
-			case Adafruit_MCP23017:
+			case MCP23017:
 			{
 				mcp17.pinMode(pinNum, mode);
 				break;
@@ -114,12 +114,12 @@ public:
 	}
 	virtual void pin_write(byte pinNum, boolean level) { 
 		switch(i2ctype) {
-			case Adafruit_MCP23008:
+			case MCP23008:
 			{
 				mcp8.digitalWrite(pinNum, level); 
 				break;
 			}
-			case Adafruit_MCP23017:
+			case MCP23017:
 			{
 				mcp17.digitalWrite(pinNum, level); 
 				break;
@@ -130,11 +130,11 @@ public:
 	}
 	virtual int  pin_read(byte pinNum) {  
 		switch(i2ctype) {
-			case Adafruit_MCP23008:
+			case MCP23008:
 			{
 				return mcp8.digitalRead(pinNum);
 			}
-			case Adafruit_MCP23017:
+			case MCP23017:
 			{
 				return mcp17.digitalRead(pinNum);
 			}

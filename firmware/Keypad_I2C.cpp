@@ -52,13 +52,13 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	switch (i2cstr) {
 		case "Adafruit_MCP23017":
 		{
-			i2ctype = Adafruit_MCP23017;
+			i2ctype = MCP23017;
 			mcp17.begin();
 			break;
 		}
 		case "Adafruit_MCP23008":
 		{
-			i2ctype = Adafruit_MCP23008;
+			i2ctype = MCP23008;
 			mcp8.begin();
 			break;
 		}
