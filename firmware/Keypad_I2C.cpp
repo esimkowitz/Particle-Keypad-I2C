@@ -59,6 +59,7 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	}
 }
 
+// for backwards compatibility
 Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
 	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008");
 }

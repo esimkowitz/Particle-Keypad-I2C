@@ -1,10 +1,11 @@
-/* @file HelloKeypad.ino
-|| @version 1.1
+/* @file HelloKeypad_MCP17.ino
+|| @version 1.1.5
 || @author Alexander Brevig, adapted for Particle IDE by Evan Simkowitz
 || @contact alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
 || @description
-|| | Demonstrates the simplest use of the matrix Keypad library.
+|| | Demonstrates the simplest use of the matrix Keypad library. If you want to use the
+|| | MCP23008 library, change I2CTYPE to be "Adafruit_MCP23008".
 || #
 */
 
