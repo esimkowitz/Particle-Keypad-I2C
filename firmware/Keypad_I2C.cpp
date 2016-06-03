@@ -59,7 +59,9 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	}
 }
 
-// for backwards compatibility
+// I've included a constructor that does not include an i2ctype. This constructor is meant
+// to ensure backwards compatibility. New users of the library will probably want to use the
+// other constructor.
 Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
 	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008");
 }
