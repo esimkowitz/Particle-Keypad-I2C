@@ -195,6 +195,7 @@ private:
 
 /*
 || @changelog
+|| | 0.1.8 2016-6-06 - Evan Simkowitz	: Added some comments to make the declaration process clearer.
 || | 0.1.8 2016-6-01 - Evan Simkowitz	: Update to example, turns out it didn't like const char*.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future 
 || |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
