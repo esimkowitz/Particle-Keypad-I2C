@@ -31,6 +31,13 @@
 ||
 */
 
+/*
+Currently, I have implemented the MCP23008 and MCP23017 chips for I2C port expansion.
+To pick which one you want to use, put a char* with contents "Adafruit_MCP230XX" where
+XX is the corresponding number (either 08 or 17). This should be the last parameter in
+your constructor.
+*/
+
 #ifndef KEYPAD_I2C_H
 #define KEYPAD_I2C_H
 
