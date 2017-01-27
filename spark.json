@@ -1,7 +1,0 @@
-{
-  "name": "Keypad_I2C",
-  "author": "Mark Stanley (mstanley@technologist.com), Alexander Brevig (alexanderbrevig@gmail.com), adapted for Spark Core by Sandro Lange, adapted for I2C by Evan Simkowitz",
-  "license": "GPLv3",
-  "version": "0.1.8",
-  "description": "Particle IDE library for using a keypad with an I2C I/O expander"
-}

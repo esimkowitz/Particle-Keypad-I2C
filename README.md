@@ -1,6 +1,6 @@
 Particle-Keypad-I2C
 ============
-Copyright (c) 2016, Evan Simkowitz
+Copyright (c) 2017, Evan Simkowitz
 
 The Key library is licensed under LGPLv2.1. The Keypad-I2C library is licensed under GPLv3. The Adafruit_MCP23008 library is under a BSD license. The Adafruit_MCP23017 library is under 
 a BSD license.
