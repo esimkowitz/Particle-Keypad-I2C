@@ -47,12 +47,18 @@ See [complete example](examples/HelloKeypad/HelloKeypad.ino) in the examples dir
 `Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CTYPE );`
 
 Creates an object to interact with the keypad.
+
 The parameters are as follows:
 1. A keymap made using the `makeKeymap()` function, which takes a parameter of an array containing the characters and where they appear on the keypad (see the [example](examples/HelloKeypad/HelloKeypad.ino)).
+
 2. An array of the pin numbers (on the I2C controller) of the rows (you may have to play around with the order of the pins depending on your wiring).
+
 3. An array of the pin numbers (on the I2C controller) of the columns (same deal as the row pins).
+
 4. The number of rows on the keypad.
+
 5. The number of columns on the keypad.
+
 6. A char array containing the name of the I2C controller you are using (either Adafruit_MCP23017 or Adafruit_MCP23008).
 
 ### `getKey`
