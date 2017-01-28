@@ -134,15 +134,15 @@ bool Keypad::updateList() {
 	// Add new keys to empty slots in the key list.
 	for (byte r=0; r<sizeKpd.rows; r++) {
 		for (byte c=0; c<sizeKpd.columns; c++) {
-			boolean button = bitRead(bitMap[r],c);
+			bool button = bitRead(bitMap[r],c);
 			char keyChar = keymap[r * sizeKpd.columns + c];
 			int keyCode = r * sizeKpd.columns + c;
 			int idx = findInList (keyCode);
-			// Key is already on the list so set its next state.
+			// MyKey is already on the list so set its next state.
 			if (idx > -1)	{
 				nextKeyState(idx, button);
 			}
-			// Key is NOT on the list so add it.
+			// MyKey is NOT on the list so add it.
 			if ((idx == -1) && button) {
 				for (byte i=0; i<LIST_MAX; i++) {
 					if (key[i].kchar==NO_KEY) {		// Find an empty slot or don't add key to list.
@@ -167,7 +167,7 @@ bool Keypad::updateList() {
 
 // Private
 // This function is a state machine but is also used for debouncing the keys.
-void Keypad::nextKeyState(byte idx, boolean button) {
+void Keypad::nextKeyState(byte idx, bool button) {
 	key[idx].stateChanged = false;
 
 	switch (key[idx].kstate) {
@@ -244,9 +244,9 @@ bool Keypad::keyStateChanged() {
 }
 
 // The number of keys on the key list, key[LIST_MAX], equals the number
-// of bytes in the key list divided by the number of bytes in a Key object.
+// of bytes in the key list divided by the number of bytes in a MyKey object.
 byte Keypad::numKeys() {
-	return sizeof(key)/sizeof(Key);
+	return sizeof(key)/sizeof(MyKey);
 }
 
 // Minimum debounceTime is 1 mS. Any lower *will* slow down the loop().
@@ -285,7 +285,7 @@ void Keypad::transitionTo(byte idx, KeyState nextState) {
 /*
 || @changelog
 || | 0.1.8 2016-6-01 - Evan Simkowitz	: Update to example, turns out it didn't like const char*.
-|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future 
+|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future
 || |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
 || |									  the constructor. For backwards-compatibility, including no i2ctype in the constructor defaults to MCP23008.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Trying just importing all the libraries and then deciding which one to use in the code with separate helpers.

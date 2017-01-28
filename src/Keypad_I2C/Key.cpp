@@ -31,14 +31,14 @@
 
 
 // default constructor
-Key::Key() {
+MyKey::MyKey() {
 	kchar = NO_KEY;
 	kstate = IDLE;
 	stateChanged = false;
 }
 
 // constructor
-Key::Key(char userKeyChar) {
+MyKey::MyKey(char userKeyChar) {
 	kchar = userKeyChar;
 	kcode = -1;
 	kstate = IDLE;
@@ -46,7 +46,7 @@ Key::Key(char userKeyChar) {
 }
 
 
-void Key::key_update (char userKeyChar, KeyState userState, boolean userStatus) {
+void MyKey::key_update (char userKeyChar, KeyState userState, bool userStatus) {
 	kchar = userKeyChar;
 	kstate = userState;
 	stateChanged = userStatus;

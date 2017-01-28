@@ -41,9 +41,9 @@ your constructor.
 #ifndef KEYPAD_I2C_H
 #define KEYPAD_I2C_H
 
-#include "Key.h"
+#include "Keypad_I2C/Key.h"
 
-#include "application.h"
+// #include "application.h"
 
 #include "Adafruit_MCP23008.h"
 #include "Adafruit_MCP23017.h"
@@ -74,11 +74,11 @@ typedef struct {
 enum I2C {MCP23017, MCP23008};
 
 //class Keypad : public Key, public HAL_obj {
-class Keypad : public Key {
+class Keypad : public MyKey {
 public:
 
 	I2C I2Ctype;
-	
+
 	Adafruit_MCP23008 mcp8;
 	Adafruit_MCP23017 mcp17;
 
@@ -123,23 +123,23 @@ public:
 				break;
 		}
 	}
-	virtual void pin_write(byte pinNum, boolean level) { 
+	virtual void pin_write(byte pinNum, bool level) {
 		switch(I2Ctype) {
 			case MCP23008:
 			{
-				mcp8.digitalWrite(pinNum, level); 
+				mcp8.digitalWrite(pinNum, level);
 				break;
 			}
 			case MCP23017:
 			{
-				mcp17.digitalWrite(pinNum, level); 
+				mcp17.digitalWrite(pinNum, level);
 				break;
 			}
 			default:
 				break;
 		}
 	}
-	virtual int  pin_read(byte pinNum) {  
+	virtual int  pin_read(byte pinNum) {
 		switch(I2Ctype) {
 			case MCP23008:
 			{
@@ -157,7 +157,7 @@ public:
 	}
 
 	uint bitMap[MAPSIZE];	// 10 row x 16 column array of bits. Except Due which has 32 columns.
-	Key key[LIST_MAX];
+	MyKey key[LIST_MAX];
 	unsigned long holdTimer;
 
 	char getKey();
@@ -186,7 +186,7 @@ private:
 
 	void scanKeys();
 	bool updateList();
-	void nextKeyState(byte n, boolean button);
+	void nextKeyState(byte n, bool button);
 	void transitionTo(byte n, KeyState nextState);
 	void (*keypadEventListener)(char);
 };
@@ -197,7 +197,7 @@ private:
 || @changelog
 || | 0.1.8 2016-6-06 - Evan Simkowitz	: Added some comments to make the declaration process clearer.
 || | 0.1.8 2016-6-01 - Evan Simkowitz	: Update to example, turns out it didn't like const char*.
-|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future 
+|| | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future
 || |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
 || |									  the constructor. For backwards-compatibility, including no i2ctype in the constructor defaults to MCP23008.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Trying just importing all the libraries and then deciding which one to use in the code with separate helpers.
