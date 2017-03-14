@@ -34,11 +34,27 @@
 #include "Keypad_I2C.h"
 
 // <<constructor>> Allows custom keymap, pin configuration, and keypad sizes.
-Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype) {
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype, uint8_t addr) {
 	rowPins = row;
 	columnPins = col;
 	sizeKpd.rows = numRows;
 	sizeKpd.columns = numCols;
+
+	if (i2ctype == "Adafruit_MCP23008") {
+			I2Ctype = MCP23008;
+			if (addr == 0xff) {
+				mcp8.begin();
+			} else {
+				mcp8.begin(addr);
+			}
+	} else if (i2ctype =="Adafruit_MCP23017") {
+			I2Ctype = MCP23017;
+			if (addr == 0xff) {
+				mcp17.begin();
+			} else {
+				mcp17.begin(addr);
+			}
+	}
 
 	begin(userKeymap);
 
@@ -49,21 +65,22 @@ Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCol
 	startTime = 0;
 	single_key = false;
 
-	if (i2ctype == "Adafruit_MCP23017") {
-		I2Ctype = MCP23017;
-		mcp17.begin();
-	}
-	else if (i2ctype == "Adafruit_MCP23008") {
-		I2Ctype = MCP23008;
-		mcp8.begin();
-	}
 }
 
-// I've included a constructor that does not include an i2ctype. This constructor is meant
+// I've included a constructor that does not include an i2ctype. The next two constructors are meant
 // to ensure backwards compatibility. New users of the library will probably want to use the
 // other constructor.
 Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols) {
-	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008");
+	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008", 0xff);
+}
+
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, uint8_t addr) {
+	Keypad(userKeymap, row, col, numRows, numCols, "Adafruit_MCP23008", addr);
+}
+
+// This constructor will use the default I2C address.
+Keypad::Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype) {
+	Keypad(userKeymap, row, col, numRows, numCols, i2ctype, 0xff);
 }
 
 // Let the user define a keymap - assume the same row/column count as defined in constructor

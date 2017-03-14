@@ -83,10 +83,11 @@ public:
 	Adafruit_MCP23017 mcp17;
 
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype);
-
+  Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, char *i2ctype, uint8_t addr);
 	// for backwards compatibility, calling the constructor without the i2ctype parameter will
 	// default to the MCP23008 chip.
 	Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols);
+  Keypad(char *userKeymap, byte *row, byte *col, byte numRows, byte numCols, uint8_t addr);
 
 	virtual void pin_mode(byte pinNum, PinMode mode) {
 		if (mode == INPUT_PULLUP) {
