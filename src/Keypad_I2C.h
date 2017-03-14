@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad_I2C.h
-|| @version 0.1.8
+|| @version 0.3.3
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
@@ -196,6 +196,7 @@ private:
 
 /*
 || @changelog
+|| | 0.3.3 2017-3-14 - Evan Simkowitz : Added ability to declare the I2C address.
 || | 0.1.8 2016-6-06 - Evan Simkowitz	: Added some comments to make the declaration process clearer.
 || | 0.1.8 2016-6-01 - Evan Simkowitz	: Update to example, turns out it didn't like const char*.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future

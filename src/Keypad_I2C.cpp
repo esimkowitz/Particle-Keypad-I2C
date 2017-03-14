@@ -1,7 +1,7 @@
 /*
 ||
 || @file Keypad_I2C.cpp
-|| @version 0.1.8
+|| @version 0.3.3
 || @author Mark Stanley, Alexander Brevig, Evan Simkowitz
 || @contact mstanley@technologist.com, alexanderbrevig@gmail.com, esimkowitz@wustl.edu
 ||
@@ -301,6 +301,7 @@ void Keypad::transitionTo(byte idx, KeyState nextState) {
 
 /*
 || @changelog
+|| | 0.3.3 2017-3-14 - Evan Simkowitz : Added ability to declare the I2C address.
 || | 0.1.8 2016-6-01 - Evan Simkowitz	: Update to example, turns out it didn't like const char*.
 || | 0.1.7 2016-6-01 - Evan Simkowitz	: Release candidate: Some variable naming has been changed and some reformatting was performed to ensure future
 || |									  ease of adding features. MCP23017 is now fully supported and can be selected by adding an i2ctype parameter to
